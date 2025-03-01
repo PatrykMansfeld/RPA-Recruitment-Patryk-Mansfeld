@@ -80,7 +80,7 @@ const DisplayReport: React.FC = () => {
   const processedData = filterReports(sortReports(state.data));
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 border-2 border-black-200 bg-blue-50 rounded-lg">
       <h1 className="text-3xl  font-bold mb-6">Weather Reports</h1>
 
       <div className="mb-6 flex flex-col sm:flex-row gap-4">
@@ -141,13 +141,14 @@ const DisplayReport: React.FC = () => {
           {processedData.map((report) => (
             <div
               key={report.id}
-              className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-black-200 rounded-lg"
             >
-              <p className="text-sm text-gray-500 mb-2">ID: {report.id}</p>
               <p className="text-lg text-gray-600 mb-2">
+                {" "}
+                Temp:
                 {`${convertToKelvin(report.temperature, report.unit).toFixed(
-                  1
-                )}K`}
+                  0
+                )}°K`}
                 <span className="text-sm text-gray-400 ml-2">
                   (Original: {report.temperature}°{report.unit[0].toUpperCase()}
                   )

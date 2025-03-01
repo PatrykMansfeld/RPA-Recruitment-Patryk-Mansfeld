@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./Components/Navigation";
+import Footer from "./Components/Footer";
 
 export const metadata: Metadata = {
   title: "Weather App",
@@ -18,6 +19,7 @@ export default function RootLayout({
         <Navigation />
         <main>
           {children}
+          <Footer />
         </main>
       </body>
     </html>
