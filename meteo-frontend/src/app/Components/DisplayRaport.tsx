@@ -88,7 +88,7 @@ const DisplayReport: React.FC = () => {
           <select
             value={sortField}
             onChange={(e) => setSortField(e.target.value as any)}
-            className="p-2 border rounded"
+            className="p-3 border bg-white rounded"
           >
             <option value="date">Sort by Date</option>
             <option value="temperature">Sort by Temperature</option>
@@ -98,7 +98,7 @@ const DisplayReport: React.FC = () => {
             onClick={() =>
               setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"))
             }
-            className="p-2 border rounded hover:bg-gray-100 w-10"
+            className="p-2 border rounded hover:bg-gray-100 w-10 bg-white"
             aria-label="Toggle sort direction"
           >
             {sortDirection === "asc" ? "↑" : "↓"}
@@ -109,7 +109,7 @@ const DisplayReport: React.FC = () => {
           placeholder="Filter by city..."
           value={filterCity}
           onChange={(e) => setFilterCity(e.target.value)}
-          className="p-2 border rounded flex-grow"
+          className="p-2 border rounded flex-grow bg-white"
         />
       </div>
 

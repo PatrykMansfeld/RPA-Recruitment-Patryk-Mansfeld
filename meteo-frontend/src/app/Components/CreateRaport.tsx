@@ -48,7 +48,7 @@ const CreateRaport: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-8 bg-white rounded-xl shadow-lg border border-gray-200">
+    <div className="max-w-md mx-auto mt-8 p-8 bg-blue-50 rounded-xl shadow-lg border border-gray-200">
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
         Create New Report
       </h2>
@@ -75,7 +75,7 @@ const CreateRaport: React.FC = () => {
             value={formData.temperature}
             onChange={handleChange}
             required
-            className="border-2 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
+            className="border-2 rounded-lg p-3 bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
           />
         </div>
         <div className="flex flex-col">
@@ -85,7 +85,7 @@ const CreateRaport: React.FC = () => {
             value={formData.unit}
             onChange={handleChange}
             required
-            className="border-2 rounded-lg p-3 bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
+            className="border-2 rounded-lg bg-white p-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
           >
             <option value="Celsius">Celsius</option>
             <option value="Fahrenheit">Fahrenheit</option>
@@ -100,7 +100,7 @@ const CreateRaport: React.FC = () => {
             value={formData.city}
             onChange={handleChange}
             required
-            className="border-2 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
+            className="border-2 rounded-lg p-3 bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
           />
         </div>
         <div className="flex flex-col">
@@ -111,7 +111,7 @@ const CreateRaport: React.FC = () => {
             value={formData.date}
             onChange={handleChange}
             required
-            className="border-2 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
+            className="border-2 rounded-lg p-3 bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 outline-none transition duration-200"
           />
         </div>
         <button
