@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="sid-38422fae-e03e-43a3-bef4-bd33b32041b2" targetNamespace="http://bpmn.io/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.3.1">
+  <process id="Process_1" isExecutable="false">
+    <startEvent id="Event_0c56ey3" name="Uruchomienie procesu synchronizacji">
+      <outgoing>Flow_0cnwwg8</outgoing>
+    </startEvent>
+    <task id="Activity_0o2a5gx" name="Sprawdzenie statusu zadań na platformie jira">
+      <incoming>Flow_0cnwwg8</incoming>
+      <outgoing>Flow_1rk68sq</outgoing>
+    </task>
+    <sequenceFlow id="Flow_0cnwwg8" sourceRef="Event_0c56ey3" targetRef="Activity_0o2a5gx" />
+    <task id="Activity_1y2u6u4" name="Sprawdzenie zadań na platformie github">
+      <incoming>Flow_1rk68sq</incoming>
+      <outgoing>Flow_08s8q80</outgoing>
+    </task>
+    <sequenceFlow id="Flow_1rk68sq" sourceRef="Activity_0o2a5gx" targetRef="Activity_1y2u6u4" />
+    <task id="Activity_0jsrxhv" name="Porównanie zadań między dwiema platformami">
+      <incoming>Flow_08s8q80</incoming>
+      <outgoing>Flow_12mnhsb</outgoing>
+      <outgoing>Flow_0l4oopp</outgoing>
+      <outgoing>Flow_03axn9j</outgoing>
+    </task>
+    <sequenceFlow id="Flow_08s8q80" sourceRef="Activity_1y2u6u4" targetRef="Activity_0jsrxhv" />
+    <intermediateThrowEvent id="Event_0gvn5nh" name="Jeżeli powstał nowy branch o nazwie odpowiadającej zadaniu na Jira zmień jego status na w realizacji">
+      <incoming>Flow_12mnhsb</incoming>
+      <outgoing>Flow_1liyjsl</outgoing>
+    </intermediateThrowEvent>
+    <sequenceFlow id="Flow_12mnhsb" sourceRef="Activity_0jsrxhv" targetRef="Event_0gvn5nh" />
+    <intermediateThrowEvent id="Event_1w5x2iy" name="Jeżeli dla brancha o nazwie odpowiadającej zadaniu na Jira powsał pull request zmień status na Code Review">
+      <incoming>Flow_0l4oopp</incoming>
+      <outgoing>Flow_18hmu53</outgoing>
+    </intermediateThrowEvent>
+    <sequenceFlow id="Flow_0l4oopp" sourceRef="Activity_0jsrxhv" targetRef="Event_1w5x2iy" />
+    <intermediateThrowEvent id="Event_04wihmt" name="Jeżeli na branchu o nazwie odpowiadającej zadaniu na Jira  pull request został zamknięty zmień status na Zakończone">
+      <incoming>Flow_03axn9j</incoming>
+      <outgoing>Flow_05ksobz</outgoing>
+    </intermediateThrowEvent>
+    <sequenceFlow id="Flow_03axn9j" sourceRef="Activity_0jsrxhv" targetRef="Event_04wihmt" />
+    <endEvent id="Event_0yepuv1" name="Zakończenie procesu synchronizacji">
+      <incoming>Flow_1liyjsl</incoming>
+      <incoming>Flow_18hmu53</incoming>
+      <incoming>Flow_05ksobz</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_1liyjsl" sourceRef="Event_0gvn5nh" targetRef="Event_0yepuv1" />
+    <sequenceFlow id="Flow_18hmu53" sourceRef="Event_1w5x2iy" targetRef="Event_0yepuv1" />
+    <sequenceFlow id="Flow_05ksobz" sourceRef="Event_04wihmt" targetRef="Event_0yepuv1" />
+  </process>
+  <bpmndi:BPMNDiagram id="BpmnDiagram_1">
+    <bpmndi:BPMNPlane id="BpmnPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Event_0c56ey3_di" bpmnElement="Event_0c56ey3">
+        <omgdc:Bounds x="172" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="155" y="385" width="71" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o2a5gx_di" bpmnElement="Activity_0o2a5gx">
+        <omgdc:Bounds x="350" y="320" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y2u6u4_di" bpmnElement="Activity_1y2u6u4">
+        <omgdc:Bounds x="560" y="320" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jsrxhv_di" bpmnElement="Activity_0jsrxhv">
+        <omgdc:Bounds x="770" y="320" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gvn5nh_di" bpmnElement="Event_0gvn5nh">
+        <omgdc:Bounds x="1082" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1056" y="125" width="89" height="93" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1o9536c" bpmnElement="Event_1w5x2iy">
+        <omgdc:Bounds x="1082" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1056" y="385" width="90" height="106" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0vh03x5" bpmnElement="Event_04wihmt">
+        <omgdc:Bounds x="1082" y="572" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1058" y="615" width="87" height="106" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0yepuv1_di" bpmnElement="Event_0yepuv1">
+        <omgdc:Bounds x="1372" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1355" y="385" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0cnwwg8_di" bpmnElement="Flow_0cnwwg8">
+        <omgdi:waypoint x="208" y="360" />
+        <omgdi:waypoint x="350" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rk68sq_di" bpmnElement="Flow_1rk68sq">
+        <omgdi:waypoint x="450" y="360" />
+        <omgdi:waypoint x="560" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08s8q80_di" bpmnElement="Flow_08s8q80">
+        <omgdi:waypoint x="660" y="360" />
+        <omgdi:waypoint x="770" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12mnhsb_di" bpmnElement="Flow_12mnhsb">
+        <omgdi:waypoint x="870" y="360" />
+        <omgdi:waypoint x="940" y="360" />
+        <omgdi:waypoint x="956" y="100" />
+        <omgdi:waypoint x="1082" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l4oopp_di" bpmnElement="Flow_0l4oopp">
+        <omgdi:waypoint x="870" y="360" />
+        <omgdi:waypoint x="1082" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03axn9j_di" bpmnElement="Flow_03axn9j">
+        <omgdi:waypoint x="870" y="360" />
+        <omgdi:waypoint x="940" y="360" />
+        <omgdi:waypoint x="960" y="590" />
+        <omgdi:waypoint x="1082" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1liyjsl_di" bpmnElement="Flow_1liyjsl">
+        <omgdi:waypoint x="1118" y="100" />
+        <omgdi:waypoint x="1245" y="100" />
+        <omgdi:waypoint x="1245" y="360" />
+        <omgdi:waypoint x="1372" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18hmu53_di" bpmnElement="Flow_18hmu53">
+        <omgdi:waypoint x="1118" y="360" />
+        <omgdi:waypoint x="1372" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05ksobz_di" bpmnElement="Flow_05ksobz">
+        <omgdi:waypoint x="1118" y="590" />
+        <omgdi:waypoint x="1245" y="590" />
+        <omgdi:waypoint x="1245" y="360" />
+        <omgdi:waypoint x="1372" y="360" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
